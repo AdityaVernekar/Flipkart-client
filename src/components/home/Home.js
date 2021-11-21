@@ -39,7 +39,7 @@ const Home = () => {
         <Slide timer={false} title="TOP SELECTIONS" />
         <Slide timer={false} title="Sugegsted EXclusively For You" />
         <Slide title="Limited Discount For You.... Hurry NOW!" timer={true} />
-        <Slide title="Limited Discount For You.... Hurry NOW!" timer={true} />
+        <Slide title="Top 10 " timer={false} />
       </Box>
     </div>
   );

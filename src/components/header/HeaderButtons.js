@@ -3,7 +3,10 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import { ShoppingCart } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useContext, useState } from "react";
+import Login from "../login/Login";
+import { LoginContext } from "../../context/ContextProvider";
+import Profile from "./Profile";
 const useStyle = makeStyles({
   login: {
     background: ["#ffffff", "!important"],
@@ -30,11 +33,23 @@ const useStyle = makeStyles({
   },
 });
 const HeaderButtons = () => {
+  const [open, setOpen] = useState(false);
+  const { account, setAccount } = useContext(LoginContext);
   const classes = useStyle();
+  const openLoginDialog = () => {
+    setOpen(true);
+  };
   return (
     <div>
       <Box className={classes.wrapper}>
-        <Button className={classes.login}>Login</Button>
+        {account ? (
+          <Profile account={account} setAccount={setAccount} />
+        ) : (
+          <Button className={classes.login} onClick={() => openLoginDialog()}>
+            Login
+          </Button>
+        )}
+
         <Typography>More</Typography>
         <Link to="/cart" className={classes.container}>
           <Badge badgeContent={4} color="secondary">
@@ -42,6 +57,7 @@ const HeaderButtons = () => {
           </Badge>
           <Typography style={{ marginLeft: "10px" }}>Cart</Typography>
         </Link>
+        <Login open={open} setOpen={setOpen} setAccount={setAccount} />
       </Box>
     </div>
   );

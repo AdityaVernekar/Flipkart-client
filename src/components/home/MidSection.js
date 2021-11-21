@@ -29,7 +29,7 @@ const MidSection = () => {
           <img src={image} alt="url" className={classes.image} />
         ))}
       </Box>
-      <img src={coronaURL} className={classes.addbg} />
+      <img src={coronaURL} className={classes.addbg} alt="corona" />
     </>
   );
 };
