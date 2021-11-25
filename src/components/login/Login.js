@@ -155,6 +155,7 @@ const Login = ({ open, setOpen, setAccount }) => {
                 <TextField
                   name="username"
                   label="Enter Username "
+                  type="text"
                   fullWidth={true}
                   variant="standard"
                   onChange={(e) => onLoginInputChange(e)}
@@ -162,6 +163,7 @@ const Login = ({ open, setOpen, setAccount }) => {
                 <TextField
                   name="password"
                   label="Enter Password"
+                  type="password"
                   fullWidth={true}
                   variant="standard"
                   onChange={(e) => onLoginInputChange(e)}
@@ -195,36 +197,43 @@ const Login = ({ open, setOpen, setAccount }) => {
                   name="firstname"
                   label="Enter Firstname"
                   variant="standard"
+                  type="text"
                 />
                 <TextField
                   onChange={(e) => onInputChange(e)}
                   name="lastname"
                   label="Enter Lastname"
                   variant="standard"
+                  type="text"
                 />
                 <TextField
                   onChange={(e) => onInputChange(e)}
                   name="username"
                   label="Enter Username"
                   variant="standard"
+                  type="text"
                 />
                 <TextField
                   onChange={(e) => onInputChange(e)}
                   name="email"
                   label="Enter Email"
                   variant="standard"
+                  type="email"
                 />
                 <TextField
                   onChange={(e) => onInputChange(e)}
                   name="password"
                   label="Enter Password"
                   variant="standard"
+                  type="password"
                 />
                 <TextField
                   onChange={(e) => onInputChange(e)}
                   name="phone"
                   label="Enter Phone"
                   variant="standard"
+                  type="number"
+                  maxLength="10"
                 />
                 <Button className={classes.signupBtn} onClick={() => handleSignUp()}>
                   Sign Up

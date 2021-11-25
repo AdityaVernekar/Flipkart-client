@@ -14,6 +14,13 @@ const TemplateProvider = ({ children }) => {
           },
         },
       },
+      MuiTableCell: {
+        styleOverrides: {
+          root: {
+            borderBottom: "none",
+          },
+        },
+      },
     },
   });
   return (

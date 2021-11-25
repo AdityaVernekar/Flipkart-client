@@ -3,8 +3,9 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React from "react";
 import Carousel from "react-multi-carousel";
+import { Link } from "react-router-dom";
 import "react-multi-carousel/lib/styles.css";
-import { products } from "../../constants/data";
+
 import Countdown from "react-countdown";
 
 const useStyle = makeStyles({
@@ -64,7 +65,7 @@ const responsive = {
   },
 };
 
-const Slide = ({ timer, title }) => {
+const Slide = ({ timer, title, products }) => {
   const classes = useStyle();
   const timerURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg";
@@ -108,18 +109,20 @@ const Slide = ({ timer, title }) => {
         containerClass="carousel-container"
       >
         {products.map((product) => (
-          <Box textAlign="center" className={classes.wrapper}>
-            <img src={product.url} alt="" className={classes.image} />
-            <Typography className={classes.text} style={{ fontWeight: "600", color: "#212121" }}>
-              {product.title.shortTitle}
-            </Typography>
-            <Typography className={classes.text} style={{ color: "green" }}>
-              {product.discount}
-            </Typography>
-            <Typography className={classes.text} style={{ color: "#212121", opacity: "0.6" }}>
-              {product.tagline}
-            </Typography>
-          </Box>
+          <Link to={`product/${product.id}`}>
+            <Box textAlign="center" className={classes.wrapper}>
+              <img src={product.url} alt="" className={classes.image} />
+              <Typography className={classes.text} style={{ fontWeight: "600", color: "#212121" }}>
+                {product.title.shortTitle}
+              </Typography>
+              <Typography className={classes.text} style={{ color: "green" }}>
+                {product.discount}
+              </Typography>
+              <Typography className={classes.text} style={{ color: "#212121", opacity: "0.6" }}>
+                {product.tagline}
+              </Typography>
+            </Box>
+          </Link>
         ))}
       </Carousel>
     </Box>
