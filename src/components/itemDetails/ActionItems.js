@@ -5,6 +5,9 @@ import React from "react";
 import clsx from "clsx";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import BoltIcon from "@mui/icons-material/Bolt";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/actions/cartActions";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   leftContainer: {
@@ -37,10 +40,22 @@ const useStyles = makeStyles({
 
 const ActionItems = ({ product }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const AddItemToCart = () => {
+    dispatch(addToCart(product.id));
+    navigate("/cart");
+  };
   return (
     <Box className={classes.leftContainer}>
       <img src={product.detailUrl} alt="proImage" className={classes.image} />
-      <Button variant="contained" className={clsx(classes.button, classes.addToCart)}>
+      <br />
+      <Button
+        onClick={() => AddItemToCart()}
+        variant="contained"
+        className={clsx(classes.button, classes.addToCart)}
+      >
         <AddShoppingCartIcon style={{ marginRight: "7px" }} />
         Add To Cart
       </Button>
