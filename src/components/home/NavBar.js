@@ -3,13 +3,18 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React from "react";
 import { navData } from "../../constants/data";
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) => ({
   component: {
     display: "flex",
     margin: "55px 130px 0px 130px",
     justifyContent: "space-between",
+    overflowX: "scroll",
+    [theme.breakpoints.down("md")]: {
+      margin: "0px",
+    },
   },
   data: {
+    width: "100%",
     padding: "12px 8px",
     textAlign: "center",
   },
@@ -20,7 +25,7 @@ const useStyle = makeStyles({
     fontSize: "14px !important",
     fontWeight: "600 !important",
   },
-});
+}));
 
 const NavBar = () => {
   const classes = useStyle();

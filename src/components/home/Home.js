@@ -13,6 +13,7 @@ const useStyle = makeStyles({
   component: {
     padding: 10,
     background: "#f2f2f2",
+    width: "100%",
   },
   ad: {
     background: "white",

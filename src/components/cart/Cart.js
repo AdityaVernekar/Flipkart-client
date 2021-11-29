@@ -8,6 +8,8 @@ import { removeFromCart } from "../../redux/actions/cartActions";
 import EmptyCart from "./EmptyCart";
 import { Button } from "@mui/material";
 import TotalView from "./TotalView";
+import { payWithPayTM } from "../../service/api";
+import { post } from "../../utils/PayTm";
 
 const useStyles = makeStyles({
   component: {
@@ -52,6 +54,14 @@ const Cart = () => {
   const removeItemfromcart = (id) => {
     dispatch(removeFromCart(id));
   };
+  const BuyNow = async () => {
+    let response = await payWithPayTM({ amount: 500, email: "adityaditya7112gmail.com" });
+    let information = {
+      action: "https://securegw-stage.paytm.in/order/process",
+      params: response,
+    };
+    post(information);
+  };
   return (
     <>
       {cartItems.length ? (
@@ -66,7 +76,7 @@ const Cart = () => {
               <CartItem item={item} removeItemfromcart={removeItemfromcart} />
             ))}
             <Box className={classes.bottom}>
-              <Button variant="contained" className={classes.placeorder}>
+              <Button variant="contained" className={classes.placeorder} onClick={() => BuyNow()}>
                 Place Order
               </Button>
             </Box>

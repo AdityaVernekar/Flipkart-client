@@ -4,20 +4,25 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { bannerData } from "../../constants/data";
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) => ({
   image: {
     height: 280,
     width: "100%",
+    [theme.breakpoints.down("sm")]: {
+      objectFit: "cover",
+      height: 180,
+    },
   },
   carousel: {
     marginTop: 10,
+    width: "100%",
   },
-});
+}));
 
 const Banner = () => {
   const classes = useStyle();
   return (
-    <div>
+    <>
       <Carousel
         autoPlay={true}
         animation="slide"
@@ -38,7 +43,7 @@ const Banner = () => {
           <img src={image} alt="Banner" className={classes.image} />
         ))}
       </Carousel>
-    </div>
+    </>
   );
 };
 

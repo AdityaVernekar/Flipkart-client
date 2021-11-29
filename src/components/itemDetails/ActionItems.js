@@ -8,6 +8,8 @@ import BoltIcon from "@mui/icons-material/Bolt";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
 import { useNavigate } from "react-router-dom";
+import { payWithPayTM } from "../../service/api";
+import { post } from "../../utils/PayTm";
 
 const useStyles = makeStyles({
   leftContainer: {
@@ -47,6 +49,14 @@ const ActionItems = ({ product }) => {
     dispatch(addToCart(product.id));
     navigate("/cart");
   };
+  const BuyNow = async () => {
+    let response = await payWithPayTM({ amount: 500, email: "adityaditya7112gmail.com" });
+    let information = {
+      action: "https://securegw-stage.paytm.in/order/process",
+      params: response,
+    };
+    post(information);
+  };
   return (
     <Box className={classes.leftContainer}>
       <img src={product.detailUrl} alt="proImage" className={classes.image} />
@@ -59,7 +69,11 @@ const ActionItems = ({ product }) => {
         <AddShoppingCartIcon style={{ marginRight: "7px" }} />
         Add To Cart
       </Button>
-      <Button variant="contained" className={clsx(classes.button, classes.Buynow)}>
+      <Button
+        variant="contained"
+        className={clsx(classes.button, classes.Buynow)}
+        onClick={() => BuyNow()}
+      >
         <BoltIcon style={{ marginRight: "7px" }} />
         Buy Now
       </Button>
